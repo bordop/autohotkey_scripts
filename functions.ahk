@@ -20,20 +20,6 @@ win_pos()
 	Return
 }
 
-win_pos2()
-{
-	WinGetTitle, window_title, A
-	WinGetPos, X, Y, Width, Height, %window_title%
-	WinMove, A,, A_ScreenWidth/2, 0, 1287, 1563
-	Return
-}
-
-win_pos3()
-{
-	WinMove, A,, 2553, 0, 1614, 1212
-	Return
-}
-
 
 
 
@@ -68,7 +54,7 @@ fn_click(x,y)
 	Return
 }
 
-;Relative to active window clicker - RR for right click!
+; right click! - add param for navigation through context menus?
 
 fn_clickRR(window, x, y)
 {
@@ -82,6 +68,7 @@ fn_clickRR(window, x, y)
   MouseMove, %xloc%, %yloc%, 0
 }
 
+; click, Relative to active window 
 fn_clickR(window, x, y)
 {
   CoordMode, Mouse, Screen
@@ -123,12 +110,7 @@ MouseIsOver(WinTitle)
 
 
 
-
-
-
-
-
-
+; https://www.autohotkey.com/boards/viewtopic.php?f=6&t=17834&hilit=image+find
 ;**************************     ImageFind Function     **************************
 FindText(x,y,w,h,err1,err0,text)
 {
