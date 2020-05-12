@@ -33,10 +33,6 @@ open_menu() {
 	Run C:\Users\cewepxb\Music
 	Return
 
-	GD3:
-	Run \\Ceims002\geodart3\GD3.mxd
-	Return
-
 	CATALOG:
 	Run C:\Program Files (x86)\ArcGIS\Desktop10.3\bin\ArcCatalog.exe
 	Return
