@@ -60,16 +60,11 @@ Return
 #IfWinActive, 
 
 
-
+; Thumbs up!
 !w::
 	send {U+1F44D}
 	Return
-^F2::
-	Run C:\Program Files\AutoHotkey\scripts\screensWtext.ahk
-	Return
-^F3::
-	Run C:\Program Files\AutoHotkey\Lib\textFind.ahk
-	Return
+
 
 #n::
 	IfWinExist, ahk_exe notepad++.exe
@@ -77,6 +72,8 @@ Return
 	IfWinNotExist,  ahk_exe notepad++.exe
 		Run notepad++
 	Return
+
+; DateStamp
 ^Insert::
 	Formattime, TimeString,, M/dd/yyyy
 	Send, %TimeString%
@@ -135,14 +132,7 @@ Return
 
 
 
-
-^+w::
-	run C:\Program Files\AutoHotkey\scripts\Misc\ActiveWindowInfo.ahk
-    Return
-
-;replace slashes from file path to work in python scripts
-
-; with path on clipboard, fire this off to paste a python friendly path
+; with path on clipboard, paste a python friendly path - replace slashes from file path to work in python scripts
 #v::
 	newstr := StrReplace(Clipboard, "\" ,  "/")
 	SendInput, %newstr%
@@ -181,11 +171,6 @@ Return
 	Return
 
 
-#IfWinActive, ahk_exe OUTLOOK.EXE
-F1::  ;send message to MVM
-	SendInput, ^+m
-	SendInput, MMiller@eugene-or.gov{Tab 4}Mike,{Down 3}
-	Return
 
 #IfWinActive,
 ;********** toggle always on top mode************
@@ -193,33 +178,6 @@ F1::  ;send message to MVM
 	WinSet, AlwaysOnTop, toggle, A
 	Return
 
-
-
-
-
-;**********     code delimiting Snippets     **********
-
-#;::
-	SendInput, ================================================================================^/
-	SendInput, {left 40}{Space 2}{Left}
-Return
-#'::
-	SendInput, --------------------------------------------------------------------------------------^/{Enter};{Enter}
-	SendInput, --------------------------------------------------------------------------------------^/{Up}^/
-	Return
-
-
-
-
-; run/activate st3
-#IfWinExist, ahk_exe Sublime_Text.exe
-^F12::
-	WinActivate, ahk_exe Sublime_Text.exe
-	Return
-#IfWinNotExist, ahk_exe Sublime_Text.exe
-^F12::
-	run C:\Program Files\Sublime Text 3\sublime_text.exe
-	Return
 
 
 
@@ -231,10 +189,8 @@ Return
 #b:: ; toggle file panel
 	SendInput, ^k^b
 	Return
-::msg::
-	SendInput, MsgBox `%%A_space%
-	Return
 
+; Path from selection in WindowsExplorer
 #IfWinActive, ahk_exe Explorer.EXE
 F1::
 	Clipboard := ""
@@ -248,33 +204,10 @@ F1::
 
 
 
-
-; ::py.dict::
-; SendInput {raw} dictionary = {'key': 'value', }
-; Return
-
-
-:*:.try::
-SendInput, try:`nexcept Exception as e:`nprint(e.message){Up 2}{Enter}
+; get unique values from the clipboard
+^+u::
+string := Clipboard
+Sort, string, U
+Clipboard = %newstr%
+MsgBox % string
 Return
-
-;; get unique values from the clipboard
-; ^g::
-; string := Clipboard
-; Sort, string, U
-; Clipboard = %newstr%
-; MsgBox % string
-; Return
-
-#IfWinActive, Timesheet
- 
-:*:-::`:00:00
-:*:=::`:00:01
-:*:\::`:30:00
-:*o:me::MEETING
-:*o:dd::DATADEVELOPMENT
-:*o:dm::ROUTINE_DATA_MAINT
-:*o:tf::TRAINING_FORMAL
-:*o:ts::TRAINING_SELF
-:*o:da::DESKTOPAPPLICATION
-:*o:pr::PROGRAMMING
